@@ -1,0 +1,66 @@
+.book-perspective {
+  perspective: 2400px;
+}
+
+.leaf {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transform-origin: left center;
+  transition: transform 0.62s cubic-bezier(0.22, 0.61, 0.16, 1);
+  will-change: transform;
+  cursor: pointer;
+  transform: rotateY(0deg) translateZ(0);
+  backface-visibility: hidden;
+}
+
+.leaf.flipped {
+  transform: rotateY(-180deg) translateZ(0);
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+  border-radius: 0 14px 14px 0;
+  transform: translateZ(0);
+}
+
+.face.back {
+  transform: rotateY(180deg) translateZ(0);
+}
+
+/* subtle shadow sweep while a leaf is turning, for a more physical feel */
+.leaf::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.35), transparent 35%);
+  opacity: 0;
+  transition: opacity 0.62s cubic-bezier(0.22, 0.61, 0.16, 1);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.leaf.flipped::before {
+  opacity: 1;
+}
+
+.polaroid {
+  background: #fbf6ec;
+  padding: 10px 10px 34px 10px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  border-radius: 2px;
+}
+
+.wish-line {
+  font-family: "Caveat", cursive;
+}
+
+.confetti-dot {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.55;
+}
